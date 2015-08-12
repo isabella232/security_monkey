@@ -108,7 +108,7 @@ def setup_scheduler():
                 scheduler.add_interval_job(run_change_reporter, minutes=period, start_date=datetime.now()+timedelta(seconds=2), args=[account, period])
             auditors = [ a for (_, a) in rep.get_watchauditors(account) if a ]
             if auditors:
-                scheduler.add_cron_job(_audit_changes, hour=10, day_of_week="mon-fri", args=[account, auditors, True])
+                scheduler.add_cron_job(_audit_changes, hour=10, day=15, args=[account, auditors, True])
 
     except Exception as e:
         app.logger.warn("Scheduler Exception: {}".format(e))
